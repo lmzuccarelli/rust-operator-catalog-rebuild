@@ -17,7 +17,6 @@ futures = { version = "0.3"}
 clap = { version = "4.2.4", features = ["derive"] }
 serde_yaml = "0.9.21"
 crate = "0.0.2"
-create = "0.1.0"
 sha256 = "1.2.2"
 flate2 = "1.0.26"
 tar = "0.4.39"

@@ -4,7 +4,7 @@ This is a simple POC that rebuilds a catalog from a given set of filtered operat
 
 ## Use Case
 
-As the current redhat-operator-index has something like 203 operators, wgen we use a filtered set of operators, the index needs to reflect
+As the current redhat-operator-index has something like 203 operators, when we use a filtered set of operators, the index needs to reflect
 only the filtered operators we have selected. This means we have to re-build the catalog (with the filtered operators), use the embedded opm 
 binary to re-create the cache, then tar the contents of the layer (that contains the configs directory), obtain a sha256 has and update the 
 manifest to reflect the new layer

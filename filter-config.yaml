@@ -1,0 +1,7 @@
+kind: FilterConfiguration
+apiVersion: mirror.openshift.io/v1alpha2
+catalog: registry.redhat.io/redhat/redhat-operator-index:v4.13
+packages:
+  - name: aws-load-balancer-operator
+  - name: serverless-operator
+  - name: rhpam-kogito-operator

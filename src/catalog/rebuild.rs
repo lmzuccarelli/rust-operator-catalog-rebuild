@@ -90,21 +90,39 @@ pub async fn rebuild_catalog(
             base_dir.clone().to_string() + "/manifest-old.json",
         )
         .unwrap();
+        log.debug("manifest backup created");
+
         manifest.fs_layers[val].blob_sum = "sha256:".to_string() + &hash;
         let mut file =
             std::fs::File::create(base_dir.clone().to_string() + "/manifest.json").unwrap();
         serde_json::to_writer_pretty(&mut file, &manifest).unwrap();
+        log.debug(&format!("manifest created and updated with hash {}", hash));
+
+        // This step is not necessary, we have the blobs on disk
+        // the containers mirror function uses the folder and manifest.json or index.json
+        // looks in the blobs/sha256 directory and then mirrors the image
 
         // finally create a new catalog-index
+        let current_index = filter
+            .catalog
+            .to_string()
+            .split("/")
+            .nth(2)
+            .unwrap()
+            .to_string();
+        log.debug(&format!("current index {}", current_index.clone()));
         let new_index =
-            File::create(base_dir.clone().to_string() + "/redhat-operator-index:v4.12-rebuild")
+            File::create(base_dir.clone().to_string() + "/" + &current_index.clone() + "-rebuild")
                 .unwrap();
         let mut tar = Builder::new(new_index);
         tar.append_dir_all(".", base_dir.clone().to_string() + "/blobs")
             .unwrap();
         let mut f = File::open(base_dir.clone().to_string() + "/manifest.json").unwrap();
         tar.append_file("manifest.json", &mut f).unwrap();
-        //log.trace(&format!("results {:#?} ", index_res));
+        log.debug(&format!(
+            "new catalog created : {} ",
+            current_index.clone() + "-rebuild"
+        ));
     } else {
         log.error(&format!("error creating dir {:#?}", res));
     }

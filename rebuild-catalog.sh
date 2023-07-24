@@ -36,6 +36,10 @@ mv ${TMP_TAR} blobs/sha256/${NEWTAR}
 cp manifest.json manifest-copy.json
 sed -i "s/40f21e60a336cacba4271799bf3d0df447d5c8d7fd70a649c4b927c32e8c47a6/${NEWTAR}/g" manifest.json
 
+# This step is not necessary, we have the blobs on disk 
+# the containers mirror function uses the folder and manifest.json or index.json
+# looks in the blobs/sha256 directory and then mirrors the image
+
 # create new tar
 tar -cvf redhat-operator-index.tar manifest.json blobs/ | sha256sum > digest.txt
 

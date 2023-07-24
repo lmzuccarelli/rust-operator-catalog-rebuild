@@ -45,8 +45,9 @@ cargo run -- --config filter-config.yaml
 Console output  
 
 ```
-cargo run -- --config filter-config.yaml 
-    Finished dev [unoptimized + debuginfo] target(s) in 0.07s
+$ cargo run -- --config filter-config.yaml 
+   Compiling rust-operator-catalog-rebuild v0.1.0 (/home/lzuccarelli/Projects/rust-operator-catalog-rebuild)
+    Finished dev [unoptimized + debuginfo] target(s) in 3.31s
      Running `target/debug/rust-operator-catalog-rebuild --config filter-config.yaml`
  INFO   : rust-operator-catalog-rebuild filter-config.yaml 
  DEBUG  : [
@@ -71,9 +72,15 @@ cargo run -- --config filter-config.yaml
  INFO   :   to working-dir/redhat-operator-index/v4.13/cache/tmp-catalog/configs/serverless-operator 
  INFO   :   from working-dir/redhat-operator-index/v4.13/cache/a1bc7b/configs/rhpam-kogito-operator 
  INFO   :   to working-dir/redhat-operator-index/v4.13/cache/tmp-catalog/configs/rhpam-kogito-operator 
- INFO   : hash c3c9bf0a038c16b4522ac0bfcc529c1e5a7eb9a7016f2672ada19519f0e26491 
+ INFO   : hash 9c9ab681b51407ffbb26c8d07032257f0635c0a5a84bfbfb4602480fcb237b3a 
  INFO   : temp-catalog directory removed 
-```
+ INFO   : found layer sha256:a1bc7bb76d63960ba158d977f3d61165f32f9802a2c1dc106640b5d47fb8a86c 
+ DEBUG  : manifest backup created
+ DEBUG  : manifest created and updated with hash 9c9ab681b51407ffbb26c8d07032257f0635c0a5a84bfbfb4602480fcb237b3a
+ DEBUG  : current index redhat-operator-index:v4.13
+ DEBUG  : new catalog created : redhat-operator-index:v4.13-rebuild 
+
+ ```
 
 Observe that a new manifest.json is created (there should be a backup of the old version)
 also a file called *redhat-operator-index:v4.12-rebuild* should be located in the 

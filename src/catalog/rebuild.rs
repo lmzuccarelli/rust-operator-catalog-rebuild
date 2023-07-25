@@ -66,7 +66,7 @@ pub async fn rebuild_catalog(
         // update the manifest
         let manifest_content = load_file(base_dir.clone().to_string() + "/manifest.json").unwrap();
         let mut manifest = parse_json_manifest(manifest_content).unwrap();
-        // get the 6 diget sha from the configs dir
+        // get the 6 digit digest sha from the configs dir
         let sha = configs_dir
             .split("cache/")
             .nth(1)
